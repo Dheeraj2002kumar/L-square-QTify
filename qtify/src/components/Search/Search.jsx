@@ -6,6 +6,8 @@ import navbarStyles from "../Navbar/navbar.module.css";
 const Search = ({ data, page }) => {
   let [value, setValue] = useState("");
   let [search, setSearch] = useState([]);
+
+  // Handle search input change
   const handleInput = (e) => {
     setValue(e.target.value);
 
@@ -15,9 +17,18 @@ const Search = ({ data, page }) => {
     setSearch(arr);
   };
 
+  // Handle item click
+  const handleClickItem = (album) => {
+    console.log("Clicked Album:", album);
+    // You can add any specific behavior here, like navigating to the album details page
+    // For example, if you're using React Router, you could use navigate to another route:
+    // navigate(`/album/${album.id}`);
+  };
+
   const handleSubmit = (e) => {
     console.log("click");
   };
+
   return (
     <div>
       <div className={navbarStyles.searchField}>
@@ -40,6 +51,8 @@ const Search = ({ data, page }) => {
           />
         </div>
       </div>
+
+      {/* Search results */}
       <div className={styles.searchResultWrapper}>
         {value.length > 0 && (
           <div className={styles.searchResult}>
@@ -48,7 +61,11 @@ const Search = ({ data, page }) => {
             ) : (
               search.map((album) => {
                 return (
-                  <div className={styles.albumWrapper} key={album.id}>
+                  <div
+                    className={styles.albumWrapper}
+                    key={album.id}
+                    onClick={() => handleClickItem(album)} // Make item clickable
+                  >
                     <div className={styles.imgWrapper}>
                       <img
                         src={album.image}
