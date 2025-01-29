@@ -1,18 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.svg";
-import styles from "../Navbar/navbar.module.css";
-const Logo = () => {
-  let navigate = useNavigate();
-  return (
-    <div>
-      <img
-        src={logo}
-        alt="Logo"
-        className={styles.img}
-        onClick={() => navigate("/")}
-      />
-    </div>
-  );
-};
+import React from "react";
+import LogoImage from "../../assets/logo.png";
 
-export default Logo;
+export default function Logo() {
+  return <img src={LogoImage} alt="logo" width={67} />;
+}
